@@ -23,7 +23,7 @@
     <div class="header-content">
       <img class=""  src="images/main.png" alt="Couple Photo" class="main-photo" />
       <img src="images/main_title.png" alt="Couple Photo" class="main-title" />
-      <div class="event-info">
+      <div class="event-info no-info">
         <p class="date">연인의 정원 분당점</p>
         <p class="location" style="margin-top: 4px;">2025년 10월 19일 (일) 오후 3시</p>
       </div>
@@ -108,7 +108,7 @@
     </section>
   
 <!-- 예식 안내 및 오시는 길, 계좌번호 섹션 -->
-<section class="info-section" style="max-width:393px;margin:75px auto; padding: 0px 12px;">
+<section class="info-section no-info" style="max-width:393px;margin:75px auto; padding: 0px 12px;">
   <h2 class="info-title">예식 안내</h2>
   <div class="info-date" style="margin-top: 20px;">2025년 10월 19일 (일) 오후 3시</div>
 
@@ -230,6 +230,16 @@ text-align: center;
   <script>
   // 갤러리 더보기 버튼
   document.addEventListener('DOMContentLoaded', function() {
+    // URL 파라미터에 info=no 면 .no-info 요소들을 숨깁니다.
+    try {
+      var params = new URLSearchParams(window.location.search);
+      if (params.get('info') === 'no') {
+        document.querySelectorAll('.no-info').forEach(function(el){ el.style.display = 'none'; });
+      }
+    } catch (e) {
+      // URLSearchParams가 없는 환경에서는 무시
+    }
+
     var btn = document.getElementById('gallery-more-btn');
     var arrowLefts = document.getElementsByClassName('gallery-more-arrow-left');
     var arrowRight = document.getElementById('gallery-more-arrow-right');
